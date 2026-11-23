@@ -1,0 +1,8 @@
+# Dependencias deliberadamente desactualizadas, incluidas UNICAMENTE para
+# demostrar que el analisis de composicion de software (SCA) detecta
+# vulnerabilidades conocidas. NO se instalan en la aplicacion: el runtime usa
+# requirements.txt. Ver apartado 5.2 del informe.
+Jinja2==2.11.3
+requests==2.19.1
+PyYAML==5.3.1
+urllib3==1.25.8

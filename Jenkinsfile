@@ -25,7 +25,13 @@ pipeline {
                 script {
                     def scanner = tool 'SonarScanner-DSO'
                     withSonarQubeEnv('SonarQube-DSO') {
-                        sh "${scanner}/bin/sonar-scanner"
+                        // El token se toma de la credencial sonarqube-token que
+                        // inyecta withSonarQubeEnv; nunca se escribe en el Jenkinsfile.
+                        sh """
+                            ${scanner}/bin/sonar-scanner \
+                                -Dsonar.host.url="\$SONAR_HOST_URL" \
+                                -Dsonar.token="\${SONAR_AUTH_TOKEN:-\$SONAR_TOKEN}"
+                        """
                     }
                 }
             }
